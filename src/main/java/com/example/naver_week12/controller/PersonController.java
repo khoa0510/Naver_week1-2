@@ -2,8 +2,6 @@ package com.example.naver_week12.controller;
 
 import com.example.naver_week12.model.Person;
 import com.example.naver_week12.service.PersonService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách đối tượng theo tuổi giảm dần</title>
+</head>
+<body>
+    <div>
+        <h1>Danh sách đối tượng theo tuổi giảm dần</h1>
+    </div>
+    <div>
+        <table border="1">
+            <tr>
+                <th>Id</th>
+                <th>Tên</th>
+                <th>Tuổi</th>
+                <th>Sở thích</th>
+            </tr>
+            <tr th:each ="person : ${persons}">
+                <td th:utext="${person.Id}"></td>
+                <td th:utext="${person.Name}"></td>
+                <td th:utext="${person.Age}"></td>
+                <td th:utext="${person.Hobby}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

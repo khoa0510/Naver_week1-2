@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonServiceImpl implements PersonService {
@@ -20,17 +22,11 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Person> getPersonList() {
-        List<Person> listPersonSortByAgeDecrease = new ArrayList<Person>();
-        List<Person> listAllPerson = personRepository.getPersonList();
-        while (listAllPerson.isEmpty()!=true) {
-            Person oldestPerson = listAllPerson.get(0);
-            for (Person p : listAllPerson) {
-                if (p.getAge() > oldestPerson.getAge())
-                    oldestPerson = p;
-            }
-            listPersonSortByAgeDecrease.add(new Person(oldestPerson));
-            listAllPerson.remove(oldestPerson);
-        }
+        List<Person> listPersonSortByAgeDecrease = personRepository.getPersonList().stream()
+                .sorted(Comparator
+                        .comparingInt(Person::getAge)
+                        .reversed())
+                .collect(Collectors.toList());
         return listPersonSortByAgeDecrease;
     }
 
